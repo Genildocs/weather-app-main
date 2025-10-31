@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <title>Weather App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;500;600;700&family=Bricolage+Grotesque:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="header">
+      <div class="logo">
+        <img src="./assets/images/logo.svg" alt="Weather App Logo">
+      </div>
+      <div class="units-toggle">
+        <button class="units-btn" id="unitsBtn" aria-label="Toggle units">
+          <img src="./assets/images/icon-units.svg" alt="Units">
+          <span class="units-text">Units</span>
+        </button>
+        <div class="units-dropdown" id="unitsDropdown">
+          <div class="units-header">Switch to Imperial/Metric</div>
+          <div class="units-section">
+            <h4>Temperature</h4>
+            <div class="units-option">
+              <input type="radio" id="celsius" name="temp" value="celsius" checked>
+              <label for="celsius">Celsius (°C)</label>
+            </div>
+            <div class="units-option">
+              <input type="radio" id="fahrenheit" name="temp" value="fahrenheit">
+              <label for="fahrenheit">Fahrenheit (°F)</label>
+            </div>
+          </div>
+          <div class="units-section">
+            <h4>Wind Speed</h4>
+            <div class="units-option">
+              <input type="radio" id="kmh" name="wind" value="kmh" checked>
+              <label for="kmh">km/h</label>
+            </div>
+            <div class="units-option">
+              <input type="radio" id="mph" name="wind" value="mph">
+              <label for="mph">mph</label>
+            </div>
+          </div>
+          <div class="units-section">
+            <h4>Precipitation</h4>
+            <div class="units-option">
+              <input type="radio" id="mm" name="precip" value="mm" checked>
+              <label for="mm">Millimeters (mm)</label>
+            </div>
+            <div class="units-option">
+              <input type="radio" id="inches" name="precip" value="inches">
+              <label for="inches">Inches (in)</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="search-section">
+        <h1 class="search-title">How's the sky looking today?</h1>
+        <div class="search-container">
+          <input 
+            type="text" 
+            class="search-input" 
+            id="searchInput" 
+            placeholder="Search for a city, e.g., New York"
+            autocomplete="off"
+          >
+          <button class="search-btn" id="searchBtn" aria-label="Search">
+            <img src="./assets/images/icon-search.svg" alt="Search">
+          </button>
+        </div>
+        <div class="search-loading" id="searchLoading" style="display: none;">
+          <img src="./assets/images/icon-loading.svg" alt="Loading" class="loading-icon">
+        </div>
+        <div class="search-error" id="searchError" style="display: none;">
+          <img src="./assets/images/icon-error.svg" alt="Error" class="error-icon">
+          <p>Location not found. Please try again.</p>
+        </div>
+      </section>
+
+      <section class="weather-display" id="weatherDisplay" style="display: none;">
+        <div class="current-weather">
+          <div class="weather-main">
+            <div class="weather-icon-container">
+              <img id="weatherIcon" src="" alt="Weather icon" class="weather-icon">
+            </div>
+            <div class="temperature-container">
+              <span class="temperature" id="temperature">--</span>
+              <span class="temperature-unit">°<span id="tempUnit">C</span></span>
+            </div>
+            <div class="weather-description" id="weatherDescription">--</div>
+          </div>
+          <div class="location-info">
+            <h2 class="location-name" id="locationName">--</h2>
+            <p class="location-details" id="locationDetails">--</p>
+          </div>
+        </div>
+
+        <div class="weather-metrics">
+          <div class="metric">
+            <div class="metric-label">Feels like</div>
+            <div class="metric-value">
+              <span id="feelsLike">--</span>°<span id="feelsLikeUnit">C</span>
+            </div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Humidity</div>
+            <div class="metric-value">
+              <span id="humidity">--</span>%
+            </div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Wind</div>
+            <div class="metric-value">
+              <span id="windSpeed">--</span> <span id="windUnit">km/h</span>
+            </div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Precipitation</div>
+            <div class="metric-value">
+              <span id="precipitation">--</span> <span id="precipUnit">mm</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="forecast-section" id="forecastSection" style="display: none;">
+        <div class="daily-forecast">
+          <h3 class="forecast-title">Daily forecast</h3>
+          <div class="forecast-container" id="dailyForecastContainer">
+            <!-- Daily forecast items will be inserted here -->
+          </div>
+        </div>
+
+        <div class="hourly-forecast">
+          <h3 class="forecast-title">Hourly forecast</h3>
+          <div class="day-selector" id="daySelector">
+            <!-- Day selector buttons will be inserted here -->
+          </div>
+          <div class="hourly-container" id="hourlyContainer">
+            <!-- Hourly forecast items will be inserted here -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="attribution">
+      <p>Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="#">Your Name Here</a>.</p>
+    </footer>
+  </div>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>
